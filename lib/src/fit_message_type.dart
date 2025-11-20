@@ -23,34 +23,55 @@ class FitMessageType {
   static const int fileCreator = 49;
   static const int fieldDescription = 206; // 0xCE - Developer fields
   static const int developerDataId = 207; // 0xCF - Developer data IDs
-  
+
   /// Get message type name from global message number.
   static String? getName(int messageNumber) {
     switch (messageNumber) {
-      case 0: return 'file_id';
-      case 1: return 'capabilities';
-      case 2: return 'device_settings';
-      case 3: return 'user_profile';
-      case 4: return 'hrm_profile';
-      case 5: return 'sdm_profile';
-      case 6: return 'bike_profile';
-      case 7: return 'zones';
-      case 18: return 'session';
-      case 19: return 'lap';
-      case 20: return 'record';
-      case 21: return 'event';
-      case 23: return 'device_info';
-      case 26: return 'workout';
-      case 27: return 'workout_step';
-      case 28: return 'schedule';
-      case 34: return 'activity';
-      case 49: return 'file_creator';
-      case 206: return 'field_description';
-      case 207: return 'developer_data_id';
-      default: return null;
+      case 0:
+        return 'file_id';
+      case 1:
+        return 'capabilities';
+      case 2:
+        return 'device_settings';
+      case 3:
+        return 'user_profile';
+      case 4:
+        return 'hrm_profile';
+      case 5:
+        return 'sdm_profile';
+      case 6:
+        return 'bike_profile';
+      case 7:
+        return 'zones';
+      case 18:
+        return 'session';
+      case 19:
+        return 'lap';
+      case 20:
+        return 'record';
+      case 21:
+        return 'event';
+      case 23:
+        return 'device_info';
+      case 26:
+        return 'workout';
+      case 27:
+        return 'workout_step';
+      case 28:
+        return 'schedule';
+      case 34:
+        return 'activity';
+      case 49:
+        return 'file_creator';
+      case 206:
+        return 'field_description';
+      case 207:
+        return 'developer_data_id';
+      default:
+        return null;
     }
   }
-  
+
   /// Check if message type is a developer field definition.
   static bool isDeveloperFieldMessage(int messageNumber) {
     return messageNumber == fieldDescription || messageNumber == developerDataId;

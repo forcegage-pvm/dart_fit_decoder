@@ -25,17 +25,16 @@
 ///   print('Total Messages: ${fitFile.messages.length}');
 /// }
 /// ```
-library dart_fit_decoder;
+library;
 
+export 'src/developer_field.dart';
+export 'src/exceptions.dart';
+export 'src/fit_base_type.dart';
+export 'src/fit_data_message.dart';
 export 'src/fit_decoder.dart';
+export 'src/fit_definition_message.dart';
+export 'src/fit_field.dart';
 export 'src/fit_file.dart';
 export 'src/fit_header.dart';
 export 'src/fit_message.dart';
-export 'src/fit_definition_message.dart';
-export 'src/fit_data_message.dart';
-export 'src/fit_field.dart';
-export 'src/fit_base_type.dart';
 export 'src/fit_message_type.dart';
-export 'src/developer_field.dart';
-export 'src/exceptions.dart';
-

@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+
 import 'package:dart_fit_decoder/dart_fit_decoder.dart';
 import 'package:test/test.dart';
 
@@ -51,8 +52,20 @@ void main() {
 
     test('calculates protocol version correctly', () {
       final headerBytes = Uint8List.fromList([
-        14, 0x20, 0x14, 0x0A, 0x64, 0x00, 0x00, 0x00,
-        0x2E, 0x46, 0x49, 0x54, 0xAB, 0xCD,
+        14,
+        0x20,
+        0x14,
+        0x0A,
+        0x64,
+        0x00,
+        0x00,
+        0x00,
+        0x2E,
+        0x46,
+        0x49,
+        0x54,
+        0xAB,
+        0xCD,
       ]);
 
       final header = FitHeader.parse(headerBytes);
@@ -158,4 +171,3 @@ void main() {
     });
   });
 }
-
