@@ -56,7 +56,7 @@ void main() {
       final coreFields = {
         7: 'core_temp',
         8: 'skin_temp',
-        9: 'heat_strain_index',
+        9: 'hsi',
         10: 'hrv_status',
         11: 'hrv',
         12: 'hrv_sdrr',
@@ -67,13 +67,14 @@ void main() {
         final fieldNum = entry.key;
         final fieldName = entry.value;
 
-        // Simulate field description data
+        // Simulate field description data (field name can be up to 64 bytes)
+        final nameBytes = fieldName.codeUnits.take(64).toList();
         final dataBytes = Uint8List.fromList([
           0x00, // developer_data_index
           fieldNum, // field_definition_number
           0x02, // base_type_id (uint8)
-          ...fieldName.codeUnits,
-          ...List.filled(16 - fieldName.length, 0), // Pad to 16 bytes
+          ...nameBytes,
+          ...List.filled(64 - nameBytes.length, 0), // Pad to 64 bytes
           ...List.filled(8, 0), // Empty units string
         ]);
 
@@ -81,7 +82,7 @@ void main() {
         expect(dataBytes[1], equals(fieldNum));
 
         final parsedName = String.fromCharCodes(
-          dataBytes.skip(3).take(16).takeWhile((b) => b != 0),
+          dataBytes.skip(3).take(64).takeWhile((b) => b != 0),
         );
         expect(parsedName, equals(fieldName));
       }

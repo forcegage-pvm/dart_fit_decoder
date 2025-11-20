@@ -7,11 +7,13 @@
 /// - Parse FIT file headers and validate protocol versions
 /// - Decode definition messages (local to global message type mapping)
 /// - Extract data messages with proper field value parsing
-/// - Full support for developer fields (custom sensor data)
+/// - **Full support for developer fields including CORE body temperature sensor**
+/// - Compressed timestamp support
 /// - CRC validation for file integrity
 /// - Geodesic distance calculations
+/// - Memory-efficient binary parsing
 ///
-/// Example:
+/// Example - Basic Usage:
 /// ```dart
 /// import 'dart:io';
 /// import 'package:dart_fit_decoder/dart_fit_decoder.dart';
@@ -23,6 +25,22 @@
 ///
 ///   print('Protocol Version: ${fitFile.header.protocolVersion}');
 ///   print('Total Messages: ${fitFile.messages.length}');
+///
+///   // Get activity records
+///   final records = fitFile.getRecordMessages();
+///   print('Records: ${records.length}');
+/// }
+/// ```
+///
+/// Example - CORE Temperature Extraction:
+/// ```dart
+/// final records = fitFile.getRecordMessages();
+/// for (final record in records) {
+///   for (final devField in record.developerFields) {
+///     if (devField.name == 'core_temperature') {
+///       print('Core Temp: ${devField.value}${devField.units}');
+///     }
+///   }
 /// }
 /// ```
 library;

@@ -1,5 +1,8 @@
 /// Edge case and error handling tests for robust FIT file parsing.
+library;
+
 import 'dart:typed_data';
+
 import 'package:dart_fit_decoder/dart_fit_decoder.dart';
 import 'package:test/test.dart';
 
@@ -261,11 +264,11 @@ void main() {
 
       expect(header1 & 0x60, equals(0x20 >> 2)); // Extract bits 5-6
       expect((header1 >> 5) & 0x03, equals(0)); // Local type 0
-      
+
       // For local type extraction in compressed timestamps
       final localType1 = (header1 >> 5) & 0x03;
       final localType2 = (header2 >> 5) & 0x03;
-      
+
       expect(localType1, inInclusiveRange(0, 3));
       expect(localType2, inInclusiveRange(0, 3));
     });
@@ -482,8 +485,20 @@ void main() {
   group('Edge Cases - File Size Limits', () {
     test('handles minimum file size (14-byte header only)', () {
       final minFile = Uint8List.fromList([
-        0x0E, 0x20, 0x14, 0x0A, 0x00, 0x00, 0x00, 0x00,
-        0x2E, 0x46, 0x49, 0x54, 0x00, 0x00,
+        0x0E,
+        0x20,
+        0x14,
+        0x0A,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x2E,
+        0x46,
+        0x49,
+        0x54,
+        0x00,
+        0x00,
       ]);
 
       expect(minFile.length, equals(14));

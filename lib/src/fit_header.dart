@@ -89,6 +89,15 @@ class FitHeader {
     return major + minor / 100.0;
   }
 
+  /// Get protocol version major number (upper 4 bits).
+  int get protocolVersionMajor => (protocolVersion >> 4) & 0x0F;
+
+  /// Get protocol version minor number (lower 4 bits).
+  int get protocolVersionMinor => protocolVersion & 0x0F;
+
+  /// Get the FIT file signature (always '.FIT' for valid files).
+  String get signature => dataType;
+
   @override
   String toString() {
     return 'FitHeader('
