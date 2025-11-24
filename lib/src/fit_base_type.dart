@@ -89,14 +89,14 @@ class FitBaseTypes {
     id: 0x88,
     name: 'float32',
     size: 4,
-    invalidValue: 0xFFFFFFFF,
+    invalidValue: double.nan,
   );
 
   static const float64 = FitBaseType(
     id: 0x89,
     name: 'float64',
     size: 8,
-    invalidValue: 0xFFFFFFFFFFFFFFFF,
+    invalidValue: double.nan,
   );
 
   static const uint8z = FitBaseType(

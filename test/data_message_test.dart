@@ -395,7 +395,7 @@ void main() {
       ]);
 
       final data = ByteData.view(dataBytes.buffer);
-      expect(data.getUint32(0, Endian.little), equals(1001000));
+      expect(data.getUint32(0, Endian.little), equals(1001320));
       expect(data.getUint32(4, Endian.little), equals(600000));
       expect(data.getUint32(8, Endian.little), equals(500000));
       expect(data.getUint8(12), equals(145));

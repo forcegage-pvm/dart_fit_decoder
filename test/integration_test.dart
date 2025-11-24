@@ -172,7 +172,7 @@ void main() {
       final fitFile = createFitFile(dataBytes);
 
       // Parse data message manually
-      final dataOffset = 14 + 15; // Header + definition
+      final dataOffset = 14 + 18; // Header + definition (18 bytes)
       final data = ByteData.view(fitFile.buffer, dataOffset);
 
       expect(data.getUint8(1), equals(4)); // type
@@ -234,7 +234,7 @@ void main() {
       final fitFile = createFitFile(dataBytes);
 
       // Parse first data message
-      final dataOffset = 14 + 9 + 1; // Header + definition + header byte
+      final dataOffset = 14 + 12 + 1; // Header + definition (12 bytes) + header byte
       final data = ByteData.view(fitFile.buffer, dataOffset);
 
       expect(data.getUint32(0, Endian.little), equals(1000000)); // timestamp
@@ -298,7 +298,7 @@ void main() {
       final fitFile = createFitFile(dataBytes);
 
       // Find developer field data
-      final dataOffset = 14 + 12 + 1; // Header + definition + header byte
+      final dataOffset = 14 + 13 + 1; // Header + definition (13 bytes) + header byte
       final data = ByteData.view(fitFile.buffer, dataOffset);
 
       expect(data.getUint32(0, Endian.little), equals(1000000));
@@ -325,7 +325,7 @@ void main() {
 
       final fitFile = createFitFile(dataBytes);
 
-      final dataOffset = 14 + 16 + 1;
+      final dataOffset = 14 + 19 + 1; // Header + definition (19 bytes) + header byte
       final data = ByteData.view(fitFile.buffer, dataOffset);
 
       expect(data.getUint32(0, Endian.little), equals(1000000));

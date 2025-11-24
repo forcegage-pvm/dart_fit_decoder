@@ -36,9 +36,21 @@ class FitField {
     this.units,
   });
 
+  /// Check if the value is invalid.
+  bool get _isInvalidValue {
+    if (value == null) return true;
+    if (baseType.invalidValue == null) return false;
+
+    if (baseType.invalidValue is double && (baseType.invalidValue as double).isNaN) {
+      return value is double && value.isNaN;
+    }
+
+    return value == baseType.invalidValue;
+  }
+
   /// Get the scaled value (applies scale and offset).
   dynamic get scaledValue {
-    if (value == null || value == baseType.invalidValue) {
+    if (_isInvalidValue) {
       return null;
     }
 
@@ -57,11 +69,7 @@ class FitField {
   }
 
   /// Check if field value is valid (not the invalid marker).
-  bool get isValid {
-    if (value == null) return false;
-    if (baseType.invalidValue == null) return true;
-    return value != baseType.invalidValue;
-  }
+  bool get isValid => !_isInvalidValue;
 
   @override
   String toString() {
