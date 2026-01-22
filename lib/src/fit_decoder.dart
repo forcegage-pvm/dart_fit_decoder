@@ -187,14 +187,19 @@ class FitDecoder {
 
   /// Parse a compressed timestamp message.
   void _parseCompressedTimestampMessage(int headerByte) {
-    // Bits 5-6: Time offset (0-31 seconds)
-    final timeOffset = (headerByte >> 5) & 0x1F;
+    // Bits 5-6: Local message type (0-3)
+    final localMessageType = (headerByte >> 5) & 0x03;
 
-    // Bits 0-4: Local message type (0-31)
-    final localMessageType = headerByte & 0x1F;
+    // Bits 0-4: Time offset (0-31 seconds)
+    final timeOffset = headerByte & 0x1F;
 
-    // Update timestamp
-    _lastTimestamp = (_lastTimestamp & ~0x1F) | timeOffset;
+    // Update timestamp with rollover handling (offset is modulo 32)
+    final lastOffset = _lastTimestamp & 0x1F;
+    var delta = timeOffset - lastOffset;
+    if (delta < 0) {
+      delta += 32;
+    }
+    _lastTimestamp += delta;
 
     // Parse data message
     _parseDataMessage(localMessageType);

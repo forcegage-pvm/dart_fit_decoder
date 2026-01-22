@@ -248,7 +248,7 @@ lib/
 
 ### Pre-Release Requirements
 1. Version number incremented per semantic versioning
-2. CHANGELOG.md updated with changes
+2. changelog.md updated with changes
 3. README.md examples validated
 4. Performance benchmarks re-run and documented
 5. Real-world test suite expanded if new features added

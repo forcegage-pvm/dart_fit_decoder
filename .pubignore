@@ -1,0 +1,22 @@
+# Files and folders to exclude from pub.dev package upload
+
+.dart_tool/
+pubspec.lock
+build/
+test_cache/
+coverage/
+
+# Debug scripts and local notes
+
+/debug\_\*.dart
+implementation_complete.md
+REAL_FIT_FILES_INTEGRATION.md
+TEST_RESULTS.md
+test_suite_summary.md
+
+# IDE/OS files
+
+.DS_Store
+.idea/
+.vscode/
+\*.iml

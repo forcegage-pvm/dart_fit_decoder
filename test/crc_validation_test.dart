@@ -60,7 +60,7 @@ void main() {
       final table = generateCrcTable();
       // Known values from FIT SDK CRC table
       expect(table[0x01], equals(0x1021));
-      expect(table[0xFF], equals(0xEF1F));
+      expect(table[0xFF], equals(0x1EF0));
     });
 
     test('generates consistent table', () {

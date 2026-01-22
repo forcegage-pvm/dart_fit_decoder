@@ -262,7 +262,7 @@ void main() {
       final header1 = 0x81; // Compressed, local 1
       final header2 = 0x83; // Compressed, local 3
 
-      expect(header1 & 0x60, equals(0x20 >> 2)); // Extract bits 5-6
+      expect(header1 & 0x60, equals(0x00)); // Extract bits 5-6
       expect((header1 >> 5) & 0x03, equals(0)); // Local type 0
 
       // For local type extraction in compressed timestamps
